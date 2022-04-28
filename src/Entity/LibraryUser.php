@@ -6,6 +6,12 @@ use App\Repository\LibraryUserRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: LibraryUserRepository::class)]
+#[ORM\InheritanceTy]
+/**
+ * @InheritanceType("SINGLE_TABLE")
+ * @DiscriminatorColumn(name="role", type="string")
+ * @DiscriminatorMap({"emprunter" = "Emprunter", "bibliothecaire" = "Bibliothecaire"})
+ */
 class LibraryUser
 {
     #[ORM\Id]
