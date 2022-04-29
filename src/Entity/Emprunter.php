@@ -4,25 +4,17 @@ namespace App\Entity;
 
 use App\Repository\EmprunterRepository;
 use Doctrine\ORM\Mapping as ORM;
-
+use App\Entity\LibraryUser;
 #[ORM\Entity(repositoryClass: EmprunterRepository::class)]
-class Emprunter
+
+class Emprunter extends LibraryUser
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column(type: 'integer')]
-    private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
     private $name;
 
     #[ORM\Column(type: 'integer')]
     private $books_number;
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
 
     public function getName(): ?string
     {

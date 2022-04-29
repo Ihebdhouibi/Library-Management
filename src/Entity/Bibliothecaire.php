@@ -4,22 +4,14 @@ namespace App\Entity;
 
 use App\Repository\BibliothecaireRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\LibraryUser ;
 
 #[ORM\Entity(repositoryClass: BibliothecaireRepository::class)]
-class Bibliothecaire
+class Bibliothecaire extends LibraryUser
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column(type: 'integer')]
-    private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
     private $nom;
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
 
     public function getNom(): ?string
     {
