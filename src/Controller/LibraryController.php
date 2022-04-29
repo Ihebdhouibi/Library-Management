@@ -6,12 +6,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Book;
+use App\Repository\BookRepository;
 class LibraryController extends AbstractController
 {
     #[Route('/library', name: 'app_library')]
-    public function index(): Response
+    public function index(BookRepository $repo): Response
     {
-        $repo = $this->getDoctrine()->getRepository(Book::class);
         $books = $repo->findAll();
         return $this->render('library/index.html.twig', [
             'controller_name' => 'LibraryController',
@@ -20,10 +20,8 @@ class LibraryController extends AbstractController
     }
 
     #[Route('/library/{id}', name: 'show_book')]
-    public function show($id){
-        $repo = $this->getDoctrine()->getRepository(Book::class);
-        $book = $repo->find($id);
-
+    public function show(Book $book){
+        
         return $this->render('library/show.html.twig', 
         [
             'book' => $book
