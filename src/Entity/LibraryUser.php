@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\InheritanceTy]
 /**
  * @InheritanceType("SINGLE_TABLE")
- * @DiscriminatorColumn(name="role", type="string")
+ * @DiscriminatorColumn(name="Type", type="string")
  * @DiscriminatorMap({"emprunter" = "Emprunter", "bibliothecaire" = "Bibliothecaire"})
  */
 class LibraryUser
