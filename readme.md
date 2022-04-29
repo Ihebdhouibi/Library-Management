@@ -1,4 +1,4 @@
-# Microservices with FastAPI
+# Library Management web application
 
 <p align="center"> Library Management system
 
@@ -24,7 +24,12 @@
 ## <a name="about"></a>About the project 
 
 <p>
+This project consist of developing a Library management web application
+<br>
 
+The following figure represents the class diagram of such system :
+<br>
+<img src="Library Class diagram.jpeg" style="float: center">
 </p>
 
 
