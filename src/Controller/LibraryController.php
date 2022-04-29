@@ -32,4 +32,9 @@ class LibraryController extends AbstractController
     public function home() {
         return $this->render('library/home.html.twig');
     }
+
+    #[Route('/signup', name:'signup')]
+    public function signup(){
+        return $this->render('library/signup.html.twig');
+    }
 }
