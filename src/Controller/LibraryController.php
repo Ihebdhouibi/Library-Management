@@ -5,8 +5,14 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Book;
 use App\Repository\BookRepository;
+use App\Entity\Emprunter;
+use App\Entity\EmprunterRepository;
+use Doctrine\Persistence\ObjectManager;
+use Doctrine\ORM\EntityManagerInterface;
+
 class LibraryController extends AbstractController
 {
     #[Route('/library', name: 'app_library')]
@@ -34,7 +40,18 @@ class LibraryController extends AbstractController
     }
 
     #[Route('/signup', name:'signup')]
-    public function signup(){
-        return $this->render('library/signup.html.twig');
+    public function signup(Request $request, EntityManagerInterface $manager){
+        $user = new Emprunter();
+        
+        $form = $this->createFormBuilder($user)
+                     ->add('email')
+                     ->add('password')
+                     ->add('role', )
+                     ->add('name')
+                     ->getForm();
+
+        return $this->render('library/signup.html.twig', [
+            'formEmprunter' => $form->createView()
+        ]);
     }
 }
