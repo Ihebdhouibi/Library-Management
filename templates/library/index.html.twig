@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello Visitor{% endblock %}
+
+{% block body %}
+<section class="books">
+
+    {% for book in books %}
+    <h3><a href="{{ path('show_book', {'id': book.id}) }}">{{ book.title }}</a></h3>
+    <h4>{{ book.author }}</h4>
+    <h4>{{book.status}}</h4>
+    <p>{{book.content}}</p>
+    <hr>
+    {% endfor %}
+</section>
+{% endblock %}
