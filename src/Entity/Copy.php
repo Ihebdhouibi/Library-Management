@@ -16,6 +16,9 @@ class Copy
     #[ORM\Column(type: 'string', length: 255)]
     private $status;
 
+    #[ORM\ManyToOne(targetEntity: Book::class, inversedBy: 'Copies')]
+    private $book;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -29,6 +32,18 @@ class Copy
     public function setStatus(string $status): self
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    public function getBook(): ?Book
+    {
+        return $this->book;
+    }
+
+    public function setBook(?Book $book): self
+    {
+        $this->book = $book;
 
         return $this;
     }

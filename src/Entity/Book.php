@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\BookRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: BookRepository::class)]
@@ -24,6 +26,14 @@ class Book
 
     #[ORM\Column(type: 'string', length: 255)]
     private $status;
+
+    #[ORM\OneToMany(mappedBy: 'book', targetEntity: Copy::class)]
+    private $Copies;
+
+    public function __construct()
+    {
+        $this->Copies = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -74,6 +84,36 @@ class Book
     public function setStatus(string $status): self
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Copy>
+     */
+    public function getCopies(): Collection
+    {
+        return $this->Copies;
+    }
+
+    public function addCopy(Copy $copy): self
+    {
+        if (!$this->Copies->contains($copy)) {
+            $this->Copies[] = $copy;
+            $copy->setBook($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCopy(Copy $copy): self
+    {
+        if ($this->Copies->removeElement($copy)) {
+            // set the owning side to null (unless already changed)
+            if ($copy->getBook() === $this) {
+                $copy->setBook(null);
+            }
+        }
 
         return $this;
     }
